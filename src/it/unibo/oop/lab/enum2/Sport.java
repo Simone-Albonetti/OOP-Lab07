@@ -2,7 +2,6 @@
  * 
  */
 package it.unibo.oop.lab.enum2;
-
 /**
  * Represents an enumeration for declaring sports.
  * 
@@ -37,7 +36,13 @@ public enum Sport {
      * - soccer
      * 
      */
-
+	BASKET(Place.INDOOR, 5, "BASKET"),
+	VOLLEY(Place.INDOOR, 6, "VOLLEY"),
+	TENNIS(Place.OUTDOOR , 1, "TENNIS"),
+	BIKE(Place.OUTDOOR, 1, "BIKE"),
+	F1(Place.OUTDOOR, 1, "F1"),
+	MOTOGP(Place.OUTDOOR, 1, "MOTOGP"),
+	SOCCER(Place.OUTDOOR, 11, "SOCCER");
     /*
      * TODO
      * 
@@ -45,8 +50,11 @@ public enum Sport {
      * 
      * Declare required fields
      */
-
-    /*
+	private final int numberOfPlayer;
+	private final String name;
+	private final Place place;
+	
+	/*
      * TODO
      * 
      * [CONSTRUCTOR]
@@ -55,7 +63,11 @@ public enum Sport {
      * 
      * - Sport(final Place place, final int noTeamMembers, final String actualName)
      */
-
+	private Sport (final Place place, final int numberOfPlayer, final String name) {
+		this.place = place;
+		this.numberOfPlayer = numberOfPlayer;
+		this.name = name;
+	}
     /*
      * TODO
      * 
@@ -65,20 +77,33 @@ public enum Sport {
      * 1) public boolean isIndividualSport()
      * 
      * Must return true only if called on individual sports
-     * 
-     * 
+     */
+	public boolean isIndividualSport() {
+		return (this.numberOfPlayer == 1);
+	}
+	
+    /* 
      * 2) public boolean isIndoorSport()
      * 
      * Must return true in case the sport is practices indoor
-     * 
-     * 
+     */
+	public boolean isIndoorSport() {
+		return (this.place.equals(Place.INDOOR));
+	}
+    /* 
      * 3) public Place getPlace()
      * 
      * Must return the place where this sport is practiced
-     * 
-     * 
+     */
+	public Place getPlace() {
+		return this.place;
+	}
+     /* 
      * 4) public String toString()
-     * 
-     * Returns the string representation of a sport
+     */ 
+	public String toString() {
+		return "Name: " + this.name + "\tPlace: " + this.place + "\tNumberOfPlayer: " + this.numberOfPlayer;
+	}
+	/* Returns the string representation of a sport
      */
 }
